@@ -27,7 +27,12 @@ class RTSCLONE_API URTSGameInstance : public UGameInstance
 	UPROPERTY()
 	TMap<FName, UWarheadData_Static*> WarheadList;
 
+	UPROPERTY()
+	TMap<FName, FLinearColor> ColorList;
+
 public:
+	URTSGameInstance();
+
 	UFUNCTION(BlueprintCallable)
 	UUnitData_Static* GetUnitStaticData(FString FromName) const;
 	

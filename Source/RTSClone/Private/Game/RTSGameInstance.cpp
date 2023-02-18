@@ -5,6 +5,19 @@
 #include "Data/UnitData_Static.h"
 #include "Data/WeaponData_Static.h"
 
+// Sets default values
+URTSGameInstance::URTSGameInstance()
+{
+	ColorList.Add("Gold", FLinearColor::Yellow);
+	ColorList.Add("Red", FLinearColor::Red);
+	ColorList.Add("Blue", FLinearColor::Blue);
+	ColorList.Add("Green", FLinearColor::Green);
+	ColorList.Add("Orange", FLinearColor(1.f, 0.5f, 0.f));
+	ColorList.Add("Cyan", FLinearColor(0.f, 1.f, 1.f));
+	ColorList.Add("Purple", FLinearColor(0.5f, 0.f, 1.f));
+	ColorList.Add("Pink", FLinearColor(1.f, 0.f, 0.5f));
+}
+
 UUnitData_Static* URTSGameInstance::GetUnitStaticData(FString FromName) const {
 	if (UnitList.Contains(FName(FromName))) {
 		return UnitList.FindRef(FName(FromName));
