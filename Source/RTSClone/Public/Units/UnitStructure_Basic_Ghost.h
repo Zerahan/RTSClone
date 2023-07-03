@@ -29,5 +29,4 @@ public:
 
 	virtual bool SetupUnitFromData_Implementation(UUnitData_Static* StaticData);
 	virtual UUnitData_Static* GetUnitStaticData_Implementation() const;
-
 };

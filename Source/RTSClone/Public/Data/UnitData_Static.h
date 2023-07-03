@@ -67,19 +67,24 @@ USTRUCT(BlueprintType)
 struct FUnitData_StaticStruct : public FTableRowBase {
 	GENERATED_BODY()
 
-	FUnitData_StaticStruct() {
-		ID				= NAME_None;
-		DisplayName		= FText::FromString("Unknown Object");
-		UnitType		= EUnitClass::None;
-		Category		= EAICategory::Soldier;
-		MovementType	= EMovementType::None;
-		BrainType		= EBrainType::None;
-		MeshToUse		= nullptr;
-		Health			= 1;
-		Speed			= 0;
-		SortRank		= "a";
-		Factory			= EUnitClass::None;
-	}
+public:
+	FUnitData_StaticStruct()
+		: ID(NAME_None)
+		, DisplayName(FText::FromString("Unknown Object"))
+		, DisplayTooltip(FText::FromString("Description"))
+		, SortRank("a")
+		, UnitType(EUnitClass::None)
+		, MeshToUse(nullptr)
+		, Transform(FTransform())
+		, IconImage(nullptr)
+		, Category(EAICategory::Soldier)
+		, MovementType(EMovementType::None)
+		, BrainType(EBrainType::None)
+		, Cost(0)
+		, Health(1)
+		, Speed(0)
+		, Factory(EUnitClass::None)
+	{};
 
 	// Internal ID
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
@@ -88,6 +93,10 @@ struct FUnitData_StaticStruct : public FTableRowBase {
 	// Text to display
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
 	FText DisplayName;
+
+	// Text to display
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
+	FText DisplayTooltip;
 
 	// Display name of the object
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
@@ -98,6 +107,9 @@ struct FUnitData_StaticStruct : public FTableRowBase {
 
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
 	TSoftObjectPtr<UStaticMesh> MeshToUse;
+
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
+	FTransform Transform;
 
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
 	TSoftObjectPtr<UTexture2D> IconImage;
@@ -142,13 +154,13 @@ class RTSCLONE_API UUnitData_Static : public UObject
 {
 	GENERATED_BODY()
 
-	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true", ExposeOnSpawn = "true"))
 	UDataTable* DataTableToLoad;
 
-	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true", ExposeOnSpawn = "true"))
 	FName RowNameToLoad;
 
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	FUnitData_StaticStruct UnitData_Static;
 
 public:

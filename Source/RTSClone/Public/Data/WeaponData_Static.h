@@ -12,13 +12,14 @@ USTRUCT(BlueprintType)
 struct FWeaponData_StaticStruct : public FTableRowBase {
 	GENERATED_BODY()
 
-	FWeaponData_StaticStruct() {
-		ID = NAME_None;
-		Damage = 0;
-		ROF = 15;
-		Range = 1;
-		Warhead = NAME_None;
-	}
+public:
+	FWeaponData_StaticStruct()
+		: ID(NAME_None)
+		, Damage(0)
+		, ROF(15)
+		, Range(1)
+		, Warhead(NAME_None)
+	{};
 
 	// Internal ID
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
@@ -48,17 +49,20 @@ USTRUCT(BlueprintType)
 struct FWarheadData_StaticStruct : public FTableRowBase {
 	GENERATED_BODY()
 
-	FWarheadData_StaticStruct() {
-		ID = NAME_None;
+public:
+	FWarheadData_StaticStruct()
+		: ID(NAME_None)
+	{
 		Verses.SetNumZeroed(5);
 	}
 
 	// Internal ID
-	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
 	FName ID;
-
+	
 	// "damage value verses various armor types (as percentage of full damage)..."
 	// "          -vs - none, wood(buildings), light armor, heavy armor, concrete"
+	UPROPERTY(EditFixedSize, BlueprintReadOnly, EditDefaultsOnly)
 	TArray<float> Verses;
 
 public:
