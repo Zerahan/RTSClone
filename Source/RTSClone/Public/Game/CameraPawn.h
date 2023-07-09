@@ -12,6 +12,7 @@ class UCameraComponent;
 class USphereComponent;
 class UPawnMovementComponent;
 class UArrowComponent;
+class URTSHandlerComponent;
 
 UCLASS(Blueprintable, BlueprintType, Abstract)
 class RTSCLONE_API ACameraPawn : public APawn
@@ -70,6 +71,9 @@ class RTSCLONE_API ACameraPawn : public APawn
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* Camera;
+
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
+	URTSHandlerComponent* ControlHandlerComponent;
 
 public:
 	// Sets default values for this pawn's properties

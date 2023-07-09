@@ -85,11 +85,8 @@ void AResourceFactory::BeginPlay()
 	HorizontalSpacing *= ScaleOverride.X;
 	VerticalSpacing *= ScaleOverride.Y;
 	CreateInstanceAt(0, 0);
-	for (int x = -5; x < 5; x++) {
-		for (int y = -5; y < 5; y++) {
-			//CreateInstanceAt(x, y);
-		}
-	}
+	int32 Index = GetIndex(0, 0);
+	if(ExistingResources.IsValidIndex(Index)) ExistingResources[Index].SpreadDistance = 0;
 }
 
 // Called every frame
@@ -130,6 +127,7 @@ bool AResourceFactory::CreateInstanceAt(int32 X, int32 Y, uint8 Amount) {
 	int32 InstanceIndex = GetInstanceIndexAt(X, Y);
 	if (InstanceIndex == -2 || InstanceIndex >= 0) return false;
 	int32 Index = GetIndex(X, Y);
+	if (!ExistingResources.IsValidIndex(Index)) return false;
 	ExistingResources[Index].MaxAmount = FMath::RandRange(110, 120);
 	ExistingResources[Index].Amount = FMath::Clamp(Amount, (uint8)0, ExistingResources[Index].MaxAmount);
 	FTransform Transform;

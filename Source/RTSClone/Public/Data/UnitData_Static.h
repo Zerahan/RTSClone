@@ -80,10 +80,12 @@ public:
 		, Category(EAICategory::Soldier)
 		, MovementType(EMovementType::None)
 		, BrainType(EBrainType::None)
-		, Cost(0)
-		, Health(1)
+		, Cost(500)
+		, Health(1000)
 		, Speed(0)
 		, Factory(EUnitClass::None)
+		, Class(nullptr)
+		, PlacementGhostScale(FVector2D(1,1))
 	{};
 
 	// Internal ID
@@ -141,6 +143,15 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
 	EUnitClass Factory;
+
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<AActor> Class;
+
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
+	FVector2D PlacementGhostScale;
+
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
+	FVector2D PlacementGhostOffset;
 
 public:
 	bool IsValid() const { return ID != NAME_None; }

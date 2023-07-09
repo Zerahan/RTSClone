@@ -13,5 +13,6 @@ UCLASS(Blueprintable, BlueprintType, Abstract)
 class RTSCLONE_API ARTSPlayerState : public APlayerState
 {
 	GENERATED_BODY()
-	
+
+public:
 };

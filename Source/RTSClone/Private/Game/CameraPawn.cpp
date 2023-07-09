@@ -8,6 +8,7 @@
 #include "GameFramework/PawnMovementComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "Components/ArrowComponent.h"
+#include "Game/RTSHandlerComponent.h"
 
 // Sets default values
 ACameraPawn::ACameraPawn()
@@ -88,6 +89,10 @@ ACameraPawn::ACameraPawn()
 	}
 #endif // WITH_EDITORONLY_DATA
 
+	ControlHandlerComponent = CreateDefaultSubobject<URTSHandlerComponent>(TEXT("RTS Handler Component"));
+	if (ControlHandlerComponent) {
+		
+	}
 	UpdateCameraZoom();
 	UpdateCameraPanSpeed();
 }
@@ -117,13 +122,16 @@ void ACameraPawn::Tick(float DeltaTime)
 void ACameraPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	InputComponent->BindAction("ZoomIn", IE_Pressed, this, &ACameraPawn::ZoomIn);
-	InputComponent->BindAction("ZoomOut", IE_Pressed, this, &ACameraPawn::ZoomOut);
+	PlayerInputComponent->BindAction("ZoomIn", IE_Pressed, this, &ACameraPawn::ZoomIn);
+	PlayerInputComponent->BindAction("ZoomOut", IE_Pressed, this, &ACameraPawn::ZoomOut);
 
-	InputComponent->BindAxis("Zoom", this, &ACameraPawn::ZoomAxis);
-	InputComponent->BindAxis("MoveForward", this, &ACameraPawn::MoveForward);
-	InputComponent->BindAxis("MoveRight", this, &ACameraPawn::MoveRight);
+	PlayerInputComponent->BindAxis("Zoom", this, &ACameraPawn::ZoomAxis);
+	PlayerInputComponent->BindAxis("MoveForward", this, &ACameraPawn::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &ACameraPawn::MoveRight);
 
+	if (ControlHandlerComponent) {
+		ControlHandlerComponent->SetupPlayerInputComponent(PlayerInputComponent);
+	}
 }
 
 uint8 ACameraPawn::SetZoomLevel_Min(uint8 NewZoomLevel_Min)

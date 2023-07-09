@@ -15,6 +15,7 @@ struct FResourceDeposit {
 		, Amount(0)
 		, MaxAmount(200)
 		, CanSpread(true)
+		, SpreadDistance(0)
 	{};
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
@@ -28,6 +29,9 @@ struct FResourceDeposit {
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool CanSpread;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	int32 SpreadDistance;
 
 	bool IsValid() {
 		return InstanceIndex != -1;
