@@ -3,6 +3,7 @@
 
 #include "Units/UnitStructure_Basic.h"
 #include "Data/UnitData_Static.h"
+#include "Game/RTSPlayerState.h"
 
 // Sets default values
 AUnitStructure_Basic::AUnitStructure_Basic()
@@ -26,8 +27,25 @@ void AUnitStructure_Basic::Tick(float DeltaTime)
 
 }
 
-bool AUnitStructure_Basic::SetupUnitFromDataObject_Implementation(UUnitData_Static* StaticData) {
+void AUnitStructure_Basic::BeginDestroy()
+{
+	if(IsValid(OwningPlayer) && StaticDataRef && StaticDataRef->IsValid()) OwningPlayer->GetPlayerState<ARTSPlayerState>()->UnregisterUnit(this, StaticDataRef->GetStruct().ID);
+	Super::BeginDestroy();
+}
+
+bool AUnitStructure_Basic::SetupUnitFromDataObject_Implementation(UUnitData_Static* StaticData)
+{
 	StaticDataRef = StaticData;
+	StaticDataRef->Rename(nullptr, this);
+	return true;
+}
+
+bool AUnitStructure_Basic::SetupUnit_Implementation(UUnitData_Static* StaticData, AController* Controller)
+{
+	Execute_SetupUnitFromDataObject(this, StaticData);
+	SetOwningPlayer(Controller);
+	GEngine->AddOnScreenDebugMessage(-1,5,FColor::Red, FString::Printf(TEXT("Unit set up!")));
+	if (IsValid(OwningPlayer) && StaticDataRef && StaticDataRef->IsValid()) OwningPlayer->GetPlayerState<ARTSPlayerState>()->RegisterUnit(this, StaticDataRef->GetStruct().ID);
 	return true;
 }
 
@@ -38,6 +56,7 @@ AController* AUnitStructure_Basic::GetOwningPlayer_Implementation() const { retu
 void AUnitStructure_Basic::SetOwningPlayer(AController* Controller)
 {
 	OwningPlayer = Controller;
+	//if (IsValid(OwningPlayer) && StaticDataRef && StaticDataRef->IsValid()) OwningPlayer->GetPlayerState<ARTSPlayerState>()->RegisterUnit(this, StaticDataRef->GetStruct().ID);
 }
 
 uint8 AUnitStructure_Basic::GetTeamID() const

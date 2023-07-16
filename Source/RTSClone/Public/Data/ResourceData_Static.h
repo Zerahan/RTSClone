@@ -63,7 +63,7 @@ public:
 	bool LoadData(FResourceData_StaticStruct Data);
 
 	UFUNCTION(BlueprintCallable)
-	FResourceData_StaticStruct Get() const;
+	FResourceData_StaticStruct GetStruct() const;
 
 	UFUNCTION(BlueprintCallable)
 	bool IsValid() const;

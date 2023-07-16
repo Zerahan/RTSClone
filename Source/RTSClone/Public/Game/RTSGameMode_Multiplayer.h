@@ -16,7 +16,12 @@ class RTSCLONE_API ARTSGameMode_Multiplayer : public AGameMode
 
 	UPROPERTY()
 	TArray<AController*> ActivePlayerList;
-	
+
+	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
+	class UDataTable* AllUnitTypesData;
+
+	virtual void StartMatch() override;
+
 public:
 	virtual void HandleStartingNewPlayer_Implementation(APlayerController* NewPlayer) override;
 };

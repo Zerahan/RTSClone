@@ -20,7 +20,7 @@ class RTSCLONE_API AUnitStructure_Basic : public AActor, public IUnitInterface
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, meta = (AllowPrivateAccess = "true", ExposeOnSpawn = "true"))
 	AController* OwningPlayer;
 	
-public:	
+public:
 	// Sets default values for this actor's properties
 	AUnitStructure_Basic();
 
@@ -31,8 +31,10 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	virtual void BeginDestroy() override;
 
 	virtual bool SetupUnitFromDataObject_Implementation(UUnitData_Static* StaticData);
+	virtual bool SetupUnit_Implementation(UUnitData_Static* StaticData, AController* Controller);
 	virtual UUnitData_Static* GetUnitStaticData_Implementation() const;
 	virtual AController* GetOwningPlayer_Implementation() const;
 

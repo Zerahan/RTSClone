@@ -183,7 +183,7 @@ public:
 	bool LoadData(FUnitData_StaticStruct Data);
 
 	UFUNCTION(BlueprintCallable)
-	FUnitData_StaticStruct Get() const;
+	FUnitData_StaticStruct GetStruct() const;
 
 	UFUNCTION(BlueprintCallable)
 	bool IsValid() const;

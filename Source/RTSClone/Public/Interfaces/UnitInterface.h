@@ -25,11 +25,14 @@ class RTSCLONE_API IUnitInterface
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	UUnitData_Static* GetUnitStaticData() const;
 
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	bool SetupUnitFromDataObject(UUnitData_Static* StaticData);
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	bool SetupUnit(UUnitData_Static* StaticData, AController* Controller);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	AController* GetOwningPlayer() const;

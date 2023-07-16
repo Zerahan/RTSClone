@@ -11,7 +11,7 @@ bool UUnitData_Static::LoadData(FUnitData_StaticStruct Data)
     return false;
 }
 
-FUnitData_StaticStruct UUnitData_Static::Get() const { return UnitData_Static; }
+FUnitData_StaticStruct UUnitData_Static::GetStruct() const { return UnitData_Static; }
 
 bool UUnitData_Static::IsValid() const { return UnitData_Static.IsValid(); }
 

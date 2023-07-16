@@ -11,6 +11,6 @@ bool UResourceData_Static::LoadData(FResourceData_StaticStruct Data)
 	return false;
 }
 
-FResourceData_StaticStruct UResourceData_Static::Get() const { return ResourceData_Static; }
+FResourceData_StaticStruct UResourceData_Static::GetStruct() const { return ResourceData_Static; }
 
 bool UResourceData_Static::IsValid() const { return ResourceData_Static.IsValid(); }

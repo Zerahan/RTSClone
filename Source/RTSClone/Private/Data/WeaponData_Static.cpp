@@ -20,8 +20,8 @@ bool UWarheadData_Static::LoadData(FWarheadData_StaticStruct Data)
     return false;
 }
 
-FWeaponData_StaticStruct UWeaponData_Static::Get() const { return WeaponData_Static; }
-FWarheadData_StaticStruct UWarheadData_Static::Get() const { return WarheadData_Static; }
+FWeaponData_StaticStruct UWeaponData_Static::GetStruct() const { return WeaponData_Static; }
+FWarheadData_StaticStruct UWarheadData_Static::GetStruct() const { return WarheadData_Static; }
 
 bool UWeaponData_Static::IsValid() const { return WeaponData_Static.IsValid(); }
 bool UWarheadData_Static::IsValid() const { return WarheadData_Static.IsValid(); }

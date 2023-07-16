@@ -85,7 +85,7 @@ public:
 	bool LoadData(FWeaponData_StaticStruct Data);
 
 	UFUNCTION(BlueprintCallable)
-	FWeaponData_StaticStruct Get() const;
+	FWeaponData_StaticStruct GetStruct() const;
 
 	UFUNCTION(BlueprintCallable)
 	bool IsValid() const;
@@ -107,7 +107,7 @@ public:
 	bool LoadData(FWarheadData_StaticStruct Data);
 
 	UFUNCTION(BlueprintCallable)
-	FWarheadData_StaticStruct Get() const;
+	FWarheadData_StaticStruct GetStruct() const;
 
 	UFUNCTION(BlueprintCallable)
 	bool IsValid() const;
