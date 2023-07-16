@@ -33,7 +33,7 @@ void AUnitPawn_Basic::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 }
 
-bool AUnitPawn_Basic::SetupUnitFromData_Implementation(UUnitData_Static* StaticData) {
+bool AUnitPawn_Basic::SetupUnitFromDataObject_Implementation(UUnitData_Static* StaticData) {
 	StaticDataRef = StaticData;
 	return true;
 }

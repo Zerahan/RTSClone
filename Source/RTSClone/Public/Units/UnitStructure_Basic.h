@@ -32,7 +32,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	virtual bool SetupUnitFromData_Implementation(UUnitData_Static* StaticData);
+	virtual bool SetupUnitFromDataObject_Implementation(UUnitData_Static* StaticData);
 	virtual UUnitData_Static* GetUnitStaticData_Implementation() const;
 	virtual AController* GetOwningPlayer_Implementation() const;
 

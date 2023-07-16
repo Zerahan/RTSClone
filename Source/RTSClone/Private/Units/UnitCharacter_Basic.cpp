@@ -33,7 +33,7 @@ void AUnitCharacter_Basic::SetupPlayerInputComponent(UInputComponent* PlayerInpu
 
 }
 
-bool AUnitCharacter_Basic::SetupUnitFromData_Implementation(UUnitData_Static* StaticData) {
+bool AUnitCharacter_Basic::SetupUnitFromDataObject_Implementation(UUnitData_Static* StaticData) {
 	StaticDataRef = StaticData;
 	return true;
 }

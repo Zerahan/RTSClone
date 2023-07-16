@@ -2,13 +2,13 @@
 
 using UnrealBuildTool;
 
-public class RTSClone : ModuleRules
+public class RTSCloneEditor : ModuleRules
 {
-	public RTSClone(ReadOnlyTargetRules Target) : base(Target)
+	public RTSCloneEditor(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "AIModule", "DeveloperLibrary" } );
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "AIModule" } );
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  } );
 

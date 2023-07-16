@@ -8,7 +8,7 @@
 #include "GameFramework/PawnMovementComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "Components/ArrowComponent.h"
-#include "Game/RTSHandlerComponent.h"
+#include "InputManager/InputManagerComponent.h"
 
 // Sets default values
 ACameraPawn::ACameraPawn()
@@ -89,8 +89,8 @@ ACameraPawn::ACameraPawn()
 	}
 #endif // WITH_EDITORONLY_DATA
 
-	ControlHandlerComponent = CreateDefaultSubobject<URTSHandlerComponent>(TEXT("RTS Handler Component"));
-	if (ControlHandlerComponent) {
+	InputManagerComponent = CreateDefaultSubobject<UInputManagerComponent>(TEXT("Input Manager Component"));
+	if (InputManagerComponent) {
 		
 	}
 	UpdateCameraZoom();
@@ -129,8 +129,8 @@ void ACameraPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAxis("MoveForward", this, &ACameraPawn::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ACameraPawn::MoveRight);
 
-	if (ControlHandlerComponent) {
-		ControlHandlerComponent->SetupPlayerInputComponent(PlayerInputComponent);
+	if (InputManagerComponent) {
+		InputManagerComponent->SetupPlayerInputComponent(PlayerInputComponent, Cast<APlayerController>(GetController()));
 	}
 }
 

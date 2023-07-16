@@ -29,7 +29,7 @@ public:
 	UUnitData_Static* GetUnitStaticData() const;
 
 	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-	bool SetupUnitFromData(UUnitData_Static* StaticData);
+	bool SetupUnitFromDataObject(UUnitData_Static* StaticData);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	AController* GetOwningPlayer() const;

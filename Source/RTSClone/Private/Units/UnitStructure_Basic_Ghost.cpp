@@ -26,7 +26,7 @@ void AUnitStructure_Basic_Ghost::Tick(float DeltaTime)
 
 }
 
-bool AUnitStructure_Basic_Ghost::SetupUnitFromData_Implementation(UUnitData_Static* StaticData) {
+bool AUnitStructure_Basic_Ghost::SetupUnitFromDataObject_Implementation(UUnitData_Static* StaticData) {
 	StaticDataRef = StaticData;
 	return true;
 }
