@@ -29,7 +29,24 @@ ARTSGameState_Multiplayer::ARTSGameState_Multiplayer()
 
 FColor ARTSGameState_Multiplayer::GetTeamColor(ERTSTeam Team) const
 {
-	return TeamColors[(uint8)Team];
+	if(TeamColors.IsValidIndex((uint8)Team)) return TeamColors[(uint8)Team];
+	return TeamColors[0];
+}
+
+FColor ARTSGameState_Multiplayer::GetTeamIDColor(uint8 TeamID) const
+{
+	if (TeamColors.IsValidIndex(TeamID)) return TeamColors[TeamID];
+	return TeamColors[0];
+}
+
+FColor ARTSGameState_Multiplayer::GetTeamColorFromController(AController* Controller) const
+{
+	IGenericTeamAgentInterface* Agent = Cast<IGenericTeamAgentInterface>(Controller);
+	if (Agent) {
+		GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Cyan, FString::Printf(TEXT("Getting color for player team %i"), Agent->GetGenericTeamId().GetId()));
+		return GetTeamIDColor(Agent->GetGenericTeamId().GetId());
+	}
+	return FColor::White;
 }
 
 void ARTSGameState_Multiplayer::GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const

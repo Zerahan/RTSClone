@@ -29,6 +29,12 @@ public:
 	UFUNCTION(BlueprintCallable)
 	FColor GetTeamColor(ERTSTeam Team) const;
 
+	UFUNCTION(BlueprintCallable)
+	FColor GetTeamIDColor(uint8 TeamID) const;
+
+	UFUNCTION(BlueprintCallable)
+	FColor GetTeamColorFromController(AController* Controller) const;
+
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
 	UFUNCTION(BlueprintCallable)

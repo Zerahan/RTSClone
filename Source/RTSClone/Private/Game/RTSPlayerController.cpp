@@ -7,3 +7,7 @@ void ARTSPlayerController::BeginPlay()
 {
 	SetShowMouseCursor(true);
 }
+
+void ARTSPlayerController::SetGenericTeamId(const FGenericTeamId& Value) { TeamID = Value; }
+
+FGenericTeamId ARTSPlayerController::GetGenericTeamId() const { return TeamID; }

@@ -25,13 +25,15 @@ ACameraPawn::ACameraPawn()
 	SpawnCollisionHandlingMethod = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
 	CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionComponent0"));
-	CollisionComponent->InitSphereRadius(35.0f);
-	CollisionComponent->SetCollisionProfileName(UCollisionProfile::Pawn_ProfileName);
+	if (CollisionComponent) {
+		CollisionComponent->InitSphereRadius(35.0f);
+		CollisionComponent->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
 
-	CollisionComponent->CanCharacterStepUpOn = ECB_No;
-	CollisionComponent->SetShouldUpdatePhysicsVolume(true);
-	CollisionComponent->SetCanEverAffectNavigation(false);
-	CollisionComponent->bDynamicObstacle = true;
+		CollisionComponent->CanCharacterStepUpOn = ECB_No;
+		CollisionComponent->SetShouldUpdatePhysicsVolume(true);
+		CollisionComponent->SetCanEverAffectNavigation(false);
+		CollisionComponent->bDynamicObstacle = true;
+	}
 
 	RootComponent = CollisionComponent;
 
@@ -77,7 +79,8 @@ ACameraPawn::ACameraPawn()
 	}
 
 #if WITH_EDITORONLY_DATA
-	ArrowComponent = CreateEditorOnlyDefaultSubobject<UArrowComponent>(TEXT("Arrow"));
+	//*/
+	ArrowComponent = CreateEditorOnlyDefaultSubobject<UArrowComponent>(TEXT("Arrow Z-Axis"));
 	if (ArrowComponent)
 	{
 		ArrowComponent->ArrowColor = FColor(150, 200, 255);
@@ -87,6 +90,33 @@ ACameraPawn::ACameraPawn()
 		ArrowComponent->SetVisibility(true);
 		ArrowComponent->SetHiddenInGame(false);
 	}
+	//*/
+	XArrowComponent = CreateEditorOnlyDefaultSubobject<UArrowComponent>(TEXT("Arrow X-Axis"));
+	if (XArrowComponent)
+	{
+		//XArrowComponent->SetUsingAbsoluteRotation(true);
+		XArrowComponent->ArrowColor = FColor::Red;
+		//XArrowComponent->bTreatAsASprite = true;
+		XArrowComponent->SetupAttachment(CameraArm_Terrain);
+		//XArrowComponent->SetRelativeLocation(FVector::ZeroVector);
+		//XArrowComponent->bIsScreenSizeScaled = true;
+		XArrowComponent->SetVisibility(true);
+		XArrowComponent->SetHiddenInGame(false);
+		//XArrowComponent->SetWorldRotation(FRotator(0,45,0));
+	}
+	//*/
+	YArrowComponent = CreateEditorOnlyDefaultSubobject<UArrowComponent>(TEXT("Arrow Y-Axis"));
+	if (YArrowComponent)
+	{
+		//YArrowComponent->SetUsingAbsoluteRotation(true);
+		YArrowComponent->ArrowColor = FColor::Green;
+		YArrowComponent->SetupAttachment(CameraArm_Terrain);
+		//YArrowComponent->SetRelativeLocation(FVector::ZeroVector);
+		YArrowComponent->SetVisibility(true);
+		YArrowComponent->SetHiddenInGame(false);
+		//YArrowComponent->SetWorldRotation(FRotator(0, 0, 0));
+	}
+	//*/
 #endif // WITH_EDITORONLY_DATA
 
 	InputManagerComponent = CreateDefaultSubobject<UInputManagerComponent>(TEXT("Input Manager Component"));
@@ -101,7 +131,13 @@ ACameraPawn::ACameraPawn()
 void ACameraPawn::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+#if WITH_EDITORONLY_DATA
+	XArrowComponent->SetUsingAbsoluteRotation(true);
+	XArrowComponent->SetWorldRotation(FRotator(0, 0, 0));
+	YArrowComponent->SetUsingAbsoluteRotation(true);
+	YArrowComponent->SetWorldRotation(FRotator(0, 90, 0));
+#endif // WITH_EDITORONLY_DATA
 }
 
 inline uint8 ACameraPawn::GetZoomLevel() const { return ((ZoomLevel_Override != 0) ? ZoomLevel_Override : ZoomLevel); }

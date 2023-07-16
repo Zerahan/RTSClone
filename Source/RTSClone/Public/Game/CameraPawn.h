@@ -62,6 +62,12 @@ class RTSCLONE_API ACameraPawn : public APawn
 	/** Component shown in the editor only to indicate character facing */
 	UPROPERTY()
 	UArrowComponent* ArrowComponent;
+
+	UPROPERTY()
+	UArrowComponent* XArrowComponent;
+
+	UPROPERTY()
+	UArrowComponent* YArrowComponent;
 #endif
 	
 	UPROPERTY(Category = Pawn, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))

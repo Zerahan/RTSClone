@@ -13,5 +13,10 @@ UCLASS(Blueprintable, BlueprintType, Abstract)
 class RTSCLONE_API ARTSGameMode_Multiplayer : public AGameMode
 {
 	GENERATED_BODY()
+
+	UPROPERTY()
+	TArray<AController*> ActivePlayerList;
 	
+public:
+	virtual void HandleStartingNewPlayer_Implementation(APlayerController* NewPlayer) override;
 };

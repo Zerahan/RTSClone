@@ -36,4 +36,10 @@ public:
 	virtual UUnitData_Static* GetUnitStaticData_Implementation() const;
 	virtual AController* GetOwningPlayer_Implementation() const;
 
+	UFUNCTION(BlueprintCallable)
+	void SetOwningPlayer(AController* Controller);
+
+	UFUNCTION(BlueprintCallable)
+	uint8 GetTeamID() const;
+
 };

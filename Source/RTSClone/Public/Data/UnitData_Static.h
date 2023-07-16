@@ -76,6 +76,7 @@ public:
 		, UnitType(EUnitClass::None)
 		, MeshToUse(nullptr)
 		, Transform(FTransform())
+		, AddPlatform(false)
 		, IconImage(nullptr)
 		, Category(EAICategory::Soldier)
 		, MovementType(EMovementType::None)
@@ -112,6 +113,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
 	FTransform Transform;
+
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
+	bool AddPlatform;
 
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
 	TSoftObjectPtr<UTexture2D> IconImage;

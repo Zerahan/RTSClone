@@ -35,3 +35,13 @@ UUnitData_Static* AUnitStructure_Basic::GetUnitStaticData_Implementation() const
 
 AController* AUnitStructure_Basic::GetOwningPlayer_Implementation() const { return OwningPlayer; }
 
+void AUnitStructure_Basic::SetOwningPlayer(AController* Controller)
+{
+	OwningPlayer = Controller;
+}
+
+uint8 AUnitStructure_Basic::GetTeamID() const
+{
+	return uint8();
+}
+
