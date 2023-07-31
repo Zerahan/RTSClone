@@ -9,6 +9,7 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnUpdateAvailableConstructions);
 
 class UDataTable;
+class USelectionGroup;
 
 /**
  * 
@@ -35,6 +36,9 @@ class RTSCLONE_API ARTSPlayerState : public APlayerState
 
 	UPROPERTY()
 	TMap<FName, int32> OwnedUnitTypes;
+
+	UPROPERTY()
+	TArray<USelectionGroup*> SavedSelectionGroups
 
 protected:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
