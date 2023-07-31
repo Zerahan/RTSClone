@@ -36,4 +36,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	AController* GetOwningPlayer() const;
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	bool IsAlive() const;
+	bool IsAlive_Implementation() const { return false; }
 };
