@@ -42,4 +42,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void DeselectUnit();
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	bool IsAlive() const;
+	bool IsAlive_Implementation() const { return false; }
 };

@@ -56,26 +56,30 @@ public:
 	UInputManagerComponent* GetInputManager() const;
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void PrimaryAction_Pressed();
-	virtual void PrimaryAction_Pressed_Implementation();
+	void PrimaryAction_Pressed(bool IsShiftDown = false, bool IsCtrlDown = false, bool IsAltDown = false);
+	virtual void PrimaryAction_Pressed_Implementation(bool IsShiftDown, bool IsCtrlDown, bool IsAltDown);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void PrimaryAction_Released();
-	virtual void PrimaryAction_Released_Implementation();
+	void PrimaryAction_Released(bool IsShiftDown = false, bool IsCtrlDown = false, bool IsAltDown = false);
+	virtual void PrimaryAction_Released_Implementation(bool IsShiftDown, bool IsCtrlDown, bool IsAltDown);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void SecondaryAction_Pressed();
-	virtual void SecondaryAction_Pressed_Implementation();
+	void SecondaryAction_Pressed(bool IsShiftDown = false, bool IsCtrlDown = false, bool IsAltDown = false);
+	virtual void SecondaryAction_Pressed_Implementation(bool IsShiftDown, bool IsCtrlDown, bool IsAltDown);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void SecondaryAction_Released();
-	virtual void SecondaryAction_Released_Implementation();
+	void SecondaryAction_Released(bool IsShiftDown = false, bool IsCtrlDown = false, bool IsAltDown = false);
+	virtual void SecondaryAction_Released_Implementation(bool IsShiftDown, bool IsCtrlDown, bool IsAltDown);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void TertiaryAction_Pressed();
-	virtual void TertiaryAction_Pressed_Implementation();
+	void TertiaryAction_Pressed(bool IsShiftDown = false, bool IsCtrlDown = false, bool IsAltDown = false);
+	virtual void TertiaryAction_Pressed_Implementation(bool IsShiftDown, bool IsCtrlDown, bool IsAltDown);
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	void TertiaryAction_Released();
-	virtual void TertiaryAction_Released_Implementation();
+	void TertiaryAction_Released(bool IsShiftDown = false, bool IsCtrlDown = false, bool IsAltDown = false);
+	virtual void TertiaryAction_Released_Implementation(bool IsShiftDown, bool IsCtrlDown, bool IsAltDown);
+
+#if WITH_EDITORONLY_DATA
+	void PrintInput(FString Msg, bool IsShiftDown, bool IsCtrlDown, bool IsAltDown) const;
+#endif
 };

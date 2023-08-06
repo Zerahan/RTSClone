@@ -5,6 +5,7 @@
 #include "Engine/DataTable.h"
 #include "Game/RTSGameMode_Multiplayer.h"
 #include "Data/UnitData_Static.h"
+#include "Units/SelectionGroup.h"
 
 void ARTSPlayerState::SetupNewState_Implementation(UDataTable* AllPossibleConstructedUnits)
 {

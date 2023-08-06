@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Interfaces/UnitInterface.h"
+#include "Interfaces/SelectionInterface.h"
 #include "UnitStructure_Basic.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPrimarySet, bool, IsPrimary);
@@ -12,7 +13,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPrimarySet, bool, IsPrimary);
 //class UUnitData_Static;
 
 UCLASS(Blueprintable, BlueprintType, Abstract)
-class RTSCLONE_API AUnitStructure_Basic : public AActor, public IUnitInterface
+class RTSCLONE_API AUnitStructure_Basic : public AActor, public IUnitInterface, public ISelectionInterface
 {
 	GENERATED_BODY()
 

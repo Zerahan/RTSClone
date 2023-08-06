@@ -17,25 +17,6 @@ enum class EControlMode : uint8
 	Power
 };
 
-USTRUCT(BlueprintType)
-struct FSelectionGroup {
-	GENERATED_BODY();
-
-	FSelectionGroup()
-	{};
-
-	UPROPERTY()
-	TArray<AActor*> SelectedActors;
-
-	void AddToSelection(AActor* ActorRef) {
-		SelectedActors.AddUnique(ActorRef);
-	}
-
-	void RemoveFromSelection(AActor* ActorRef) {
-		SelectedActors.Remove(ActorRef);
-	}
-};
-
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnUpdateControlMode, EControlMode, Value);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
