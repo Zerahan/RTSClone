@@ -4,10 +4,21 @@
 #include "Game/RTSGameMode_Multiplayer.h"
 #include "Game/RTSPlayerController.h"
 #include "Game/RTSPlayerState.h"
+#include "Engine/DataTable.h"
+#include "Data/UnitData_Static.h"
 
-void ARTSGameMode_Multiplayer::StartMatch()
+
+void ARTSGameMode_Multiplayer::InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage)
 {
-	Super::StartMatch();
+	Super::InitGame(MapName, Options, ErrorMessage);
+	if(!AllUnitTypesData->IsValidLowLevel()) return;
+	UnitDataListIDs = AllUnitTypesData->GetRowNames();
+	for (int32 i = 0; i < UnitDataListIDs.Num(); i++) {
+		FUnitData_StaticStruct* Row = AllUnitTypesData->FindRow<FUnitData_StaticStruct>(UnitDataListIDs[i], "");
+		UUnitData_Static* UnitRef = NewObject<UUnitData_Static>(this);
+		UnitRef->LoadData(*Row);
+		UnitDataList.Add(UnitRef);
+	}
 }
 
 void ARTSGameMode_Multiplayer::HandleStartingNewPlayer_Implementation(APlayerController* NewPlayer)
@@ -23,4 +34,12 @@ void ARTSGameMode_Multiplayer::HandleStartingNewPlayer_Implementation(APlayerCon
 	if (NewState) {
 		NewState->SetupNewState(AllUnitTypesData);
 	}
+}
+
+UUnitData_Static* ARTSGameMode_Multiplayer::GetUnitDataForID(FName ID) const
+{
+	
+	int32 Index = UnitDataListIDs.Find(ID);
+	if(Index == INDEX_NONE) return nullptr;
+	return UnitDataList[Index];
 }

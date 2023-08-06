@@ -169,16 +169,13 @@ class RTSCLONE_API UUnitData_Static : public UObject
 {
 	GENERATED_BODY()
 
-	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true", ExposeOnSpawn = "true"))
-	UDataTable* DataTableToLoad;
-
-	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true", ExposeOnSpawn = "true"))
-	FName RowNameToLoad;
-
 	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	FUnitData_StaticStruct UnitData_Static;
 
 public:
+	UUnitData_Static();
+	UUnitData_Static(FUnitData_StaticStruct Data);
+
 	UFUNCTION(BlueprintCallable)
 	bool LoadData(FUnitData_StaticStruct Data);
 

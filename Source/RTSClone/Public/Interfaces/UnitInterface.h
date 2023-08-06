@@ -36,4 +36,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	AController* GetOwningPlayer() const;
+	
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	bool SelectUnit();
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+	void DeselectUnit();
 };
