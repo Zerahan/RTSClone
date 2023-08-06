@@ -8,6 +8,8 @@
 #include "Interfaces/SelectionInterface.h"
 #include "UnitStructure_Basic.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPrimarySet, bool, IsPrimary);
+
 //class UUnitData_Static;
 
 UCLASS(Blueprintable, BlueprintType, Abstract)
@@ -20,6 +22,9 @@ class RTSCLONE_API AUnitStructure_Basic : public AActor, public IUnitInterface, 
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, meta = (AllowPrivateAccess = "true", ExposeOnSpawn = "true"))
 	AController* OwningPlayer;
+
+	UPROPERTY()
+	bool IsPrimaryFactory;
 	
 public:
 	// Sets default values for this actor's properties
@@ -45,4 +50,12 @@ public:
 	UFUNCTION(BlueprintCallable)
 	uint8 GetTeamID() const;
 
+	UFUNCTION(BlueprintCallable)
+	bool GetIsPrimaryFactory() const;
+
+	UFUNCTION(BlueprintCallable)
+	void SetIsPrimaryFactory(bool Value);
+	
+	UPROPERTY(BlueprintAssignable)
+	FOnPrimarySet OnPrimarySet;
 };

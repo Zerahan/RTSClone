@@ -64,3 +64,11 @@ uint8 AUnitStructure_Basic::GetTeamID() const
 	return uint8();
 }
 
+bool AUnitStructure_Basic::GetIsPrimaryFactory() const { return IsPrimaryFactory; }
+void AUnitStructure_Basic::SetIsPrimaryFactory(bool Value)
+{
+	if (Value == IsPrimaryFactory) return;
+	IsPrimaryFactory = Value;
+	OnPrimarySet.Broadcast(Value);
+}
+
