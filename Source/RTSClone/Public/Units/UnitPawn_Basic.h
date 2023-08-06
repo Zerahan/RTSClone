@@ -5,12 +5,13 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "Interfaces/UnitInterface.h"
+#include "Interfaces/SelectionInterface.h"
 #include "UnitPawn_Basic.generated.h"
 
 //class UUnitData_Static;
 
 UCLASS(Blueprintable, BlueprintType, Abstract)
-class RTSCLONE_API AUnitPawn_Basic : public APawn, public IUnitInterface
+class RTSCLONE_API AUnitPawn_Basic : public APawn, public IUnitInterface, public ISelectionInterface
 {
 	GENERATED_BODY()
 

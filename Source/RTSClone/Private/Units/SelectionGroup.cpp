@@ -5,7 +5,7 @@
 #include "Interfaces/SelectionInterface.h"
 #include "Interfaces/UnitInterface.h"
 
-// Add default functionality here for any ISelectionInterface functions that are not pure virtual.
+const uint8 USelectionGroup::MaxGroupSize(50);
 
 USelectionGroup::USelectionGroup()
 	: Super()

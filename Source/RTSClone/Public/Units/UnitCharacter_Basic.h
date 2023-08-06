@@ -5,12 +5,13 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Interfaces/UnitInterface.h"
+#include "Interfaces/SelectionInterface.h"
 #include "UnitCharacter_Basic.generated.h"
 
 //class UUnitData_Static;
 
 UCLASS(Blueprintable, BlueprintType, Abstract)
-class RTSCLONE_API AUnitCharacter_Basic : public ACharacter, public IUnitInterface
+class RTSCLONE_API AUnitCharacter_Basic : public ACharacter, public IUnitInterface, public ISelectionInterface
 {
 	GENERATED_BODY()
 

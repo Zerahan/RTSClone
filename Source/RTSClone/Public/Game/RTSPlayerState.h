@@ -31,14 +31,14 @@ class RTSCLONE_API ARTSPlayerState : public APlayerState
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, meta = (AllowPrivateAccess = "true"))
 	TMap<FName, bool> AvailableVehicles;
 
-	UPROPERTY()
+	UPROPERTY(SaveGame)
 	TArray<AActor*> OwnedUnits;
 
-	UPROPERTY()
+	UPROPERTY(SaveGame)
 	TMap<FName, int32> OwnedUnitTypes;
 
-	UPROPERTY()
-	TArray<USelectionGroup*> SavedSelectionGroups
+	UPROPERTY(SaveGame)
+	TArray<USelectionGroup*> SavedSelectionGroups;
 
 protected:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)

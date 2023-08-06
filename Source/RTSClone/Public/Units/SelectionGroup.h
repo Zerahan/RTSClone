@@ -20,7 +20,7 @@ class RTSCLONE_API USelectionGroup : public UObject
 	TArray<AActor*> SelectedUnits;
 
 public:
-	//static const uint8 MaxGroupSize;
+	static const uint8 MaxGroupSize;
 
 public:
 	USelectionGroup();

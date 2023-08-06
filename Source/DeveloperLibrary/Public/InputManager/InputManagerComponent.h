@@ -104,4 +104,7 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	bool IsCtrlDown() const;
+
+	UFUNCTION(BlueprintCallable)
+	bool IsAltDown() const;
 };

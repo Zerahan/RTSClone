@@ -76,32 +76,32 @@ void UInputManagerComponent::SetupPlayerInputComponent(UInputComponent* PlayerIn
 
 void UInputManagerComponent::PrimaryAction_Pressed_Implementation()
 {
-	if (GetIsInputAllowed()) CurrentContext->PrimaryAction_Pressed();
+	if (GetIsInputAllowed()) CurrentContext->PrimaryAction_Pressed(IsShiftDown(), IsCtrlDown(), IsAltDown());
 }
 
 void UInputManagerComponent::PrimaryAction_Released_Implementation()
 {
-	if (GetIsInputAllowed()) CurrentContext->PrimaryAction_Released();
+	if (GetIsInputAllowed()) CurrentContext->PrimaryAction_Released(IsShiftDown(), IsCtrlDown(), IsAltDown());
 }
 
 void UInputManagerComponent::SecondaryAction_Pressed_Implementation()
 {
-	if (GetIsInputAllowed()) CurrentContext->SecondaryAction_Pressed();
+	if (GetIsInputAllowed()) CurrentContext->SecondaryAction_Pressed(IsShiftDown(), IsCtrlDown(), IsAltDown());
 }
 
 void UInputManagerComponent::SecondaryAction_Released_Implementation()
 {
-	if (GetIsInputAllowed()) CurrentContext->SecondaryAction_Released();
+	if (GetIsInputAllowed()) CurrentContext->SecondaryAction_Released(IsShiftDown(), IsCtrlDown(), IsAltDown());
 }
 
 void UInputManagerComponent::TertiaryAction_Pressed_Implementation()
 {
-	if (GetIsInputAllowed()) CurrentContext->TertiaryAction_Pressed();
+	if (GetIsInputAllowed()) CurrentContext->TertiaryAction_Pressed(IsShiftDown(), IsCtrlDown(), IsAltDown());
 }
 
 void UInputManagerComponent::TertiaryAction_Released_Implementation()
 {
-	if (GetIsInputAllowed()) CurrentContext->TertiaryAction_Released();
+	if (GetIsInputAllowed()) CurrentContext->TertiaryAction_Released(IsShiftDown(), IsCtrlDown(), IsAltDown());
 }
 
 bool UInputManagerComponent::IsShiftDown() const
@@ -112,4 +112,9 @@ bool UInputManagerComponent::IsShiftDown() const
 bool UInputManagerComponent::IsCtrlDown() const
 {
 	return ControllerRef->PlayerInput->IsCtrlPressed();
+}
+
+bool UInputManagerComponent::IsAltDown() const
+{
+	return ControllerRef->PlayerInput->IsAltPressed();
 }
