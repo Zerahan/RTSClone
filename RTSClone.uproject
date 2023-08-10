@@ -10,7 +10,8 @@
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [
 				"Engine",
-				"CoreUObject"
+				"CoreUObject",
+				"DeveloperLibrary"
 			]
 		},
 		{
@@ -26,6 +27,6 @@
 			"Name": "RTSCloneEditor",
 			"Type": "Editor",
 			"LoadingPhase": "PostEngineInit"
-		},
+		}
 	]
 }

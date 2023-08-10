@@ -51,6 +51,12 @@ void USelectionGroup::ClearInvalidUnitsFromGroup()
 	}
 }
 
+void USelectionGroup::Empty(bool DoUpdate)
+{
+	SelectedUnits.Empty();
+	if (DoUpdate) OnUpdateUnitGroup.Broadcast();
+}
+
 bool USelectionGroup::IsValidUnit(AActor* Value) const
 {
 	if (!IsValid(Value)) return false;

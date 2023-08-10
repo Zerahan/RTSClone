@@ -45,6 +45,9 @@ public:
 	void ClearInvalidUnitsFromGroup();
 
 	UFUNCTION(BlueprintCallable)
+	void Empty(bool DoUpdate = true);
+
+	UFUNCTION(BlueprintCallable)
 	bool IsValidUnit(AActor* Value) const;
 
 	UPROPERTY(BlueprintAssignable)
