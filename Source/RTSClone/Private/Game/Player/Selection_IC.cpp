@@ -5,6 +5,24 @@
 #include "Interfaces/SelectionInterface.h"
 #include "Units/SelectionGroup.h"
 
+USelection_IC::USelection_IC()
+{
+	IsDragging = false;
+}
+
+void USelection_IC::TickComponent_Implementation(float DeltaTime)
+{
+}
+
+bool USelection_IC::PrimaryAction_Pressed_Implementation(bool IsShiftDown, bool IsCtrlDown, bool IsAltDown)
+{
+	IsDragging = false;
+	FHitResult HitResult;
+	GetPlayerController()->GetHitResultUnderCursor(ECollisionChannel::ECC_Camera, false, HitResult);
+	StartLocation = HitResult.ImpactPoint;
+	return false;
+}
+
 bool USelection_IC::PrimaryAction_Released_Implementation(bool IsShiftDown, bool IsCtrlDown, bool IsAltDown)
 {
 	return Super::PrimaryAction_Released_Implementation(IsShiftDown, IsCtrlDown, IsAltDown);

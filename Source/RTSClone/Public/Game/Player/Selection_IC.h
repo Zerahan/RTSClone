@@ -22,6 +22,17 @@ class RTSCLONE_API USelection_IC : public UInputContext
 	UPROPERTY()
 	USelectionGroup* ActiveSelectionGroup;
 
+	UPROPERTY()
+	FVector StartLocation;
+
+	UPROPERTY()
+	bool IsDragging;
+
 public:
+	USelection_IC();
+
+	virtual void TickComponent_Implementation(float DeltaTime) override;
+
+	virtual bool PrimaryAction_Pressed_Implementation(bool IsShiftDown, bool IsCtrlDown, bool IsAltDown) override;
 	virtual bool PrimaryAction_Released_Implementation(bool IsShiftDown, bool IsCtrlDown, bool IsAltDown) override;
 };

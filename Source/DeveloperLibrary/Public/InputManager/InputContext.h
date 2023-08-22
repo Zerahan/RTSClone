@@ -26,6 +26,15 @@ class DEVELOPERLIBRARY_API UInputContext : public UObject
 	UPROPERTY()
 	UInputManagerComponent* InputManagerRef;
 
+	UPROPERTY()
+	float PrimaryStartHold;
+
+	UPROPERTY()
+	float SecondaryStartHold;
+
+	UPROPERTY()
+	float TertiaryStartHold;
+
 public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void TickComponent(float DeltaTime);
@@ -54,6 +63,24 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	UInputManagerComponent* GetInputManager() const;
+
+	UFUNCTION(BlueprintCallable)
+	bool IsPrimaryActionDown() const;
+	
+	UFUNCTION(BlueprintCallable)
+	bool IsPrimaryActionHeld() const;
+	
+	UFUNCTION(BlueprintCallable)
+	bool IsSecondaryActionDown() const;
+	
+	UFUNCTION(BlueprintCallable)
+	bool IsSecondaryActionHeld() const;
+	
+	UFUNCTION(BlueprintCallable)
+	bool IsTertiaryActionDown() const;
+	
+	UFUNCTION(BlueprintCallable)
+	bool IsTertiaryActionHeld() const;
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	bool PrimaryAction_Pressed(bool IsShiftDown = false, bool IsCtrlDown = false, bool IsAltDown = false);
