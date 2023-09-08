@@ -20,8 +20,16 @@ class RTSCLONE_API ARTSGameMode_Multiplayer : public AGameMode
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
 	class UDataTable* AllUnitTypesData;
 
-	virtual void StartMatch() override;
+	UPROPERTY()
+	TArray<FName> UnitDataListIDs;
+
+	UPROPERTY()
+	TArray<class UUnitData_Static*> UnitDataList;
 
 public:
+	virtual void InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage) override;
 	virtual void HandleStartingNewPlayer_Implementation(APlayerController* NewPlayer) override;
+
+	UFUNCTION(BlueprintCallable)
+	class UUnitData_Static* GetUnitDataForID(FName ID) const;
 };

@@ -3,10 +3,22 @@
 
 #include "Data/UnitData_Static.h"
 
+UUnitData_Static::UUnitData_Static()
+	: Super()
+{
+}
+
+UUnitData_Static::UUnitData_Static(FUnitData_StaticStruct Data)
+	: Super()
+{
+	LoadData(Data);
+}
+
 bool UUnitData_Static::LoadData(FUnitData_StaticStruct Data)
 {
     if (Data.IsValid()) {
         UnitData_Static = Data;
+		return true;
     }
     return false;
 }
