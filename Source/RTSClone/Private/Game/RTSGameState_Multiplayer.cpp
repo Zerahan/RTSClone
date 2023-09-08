@@ -3,6 +3,17 @@
 
 #include "Game/RTSGameState_Multiplayer.h"
 #include "Net/UnrealNetwork.h"
+#include "Data/UnitData_Static.h"
+
+void ARTSGameState_Multiplayer::HandleMatchIsWaitingToStart()
+{
+	Super::HandleMatchIsWaitingToStart();
+	if(UnitDataTable->IsValidLowLevel()) return;
+	TArray<FName> UnitData = UnitDataTable->GetRowNames();
+	for (int32 i = 0; i < UnitData.Num(); i++) {
+		UnitDataList.Add(UUnitData_Static::BuildDataFromTable(this, UnitDataTable, UnitData[i]));
+	}
+}
 
 ARTSGameState_Multiplayer::ARTSGameState_Multiplayer()
 {

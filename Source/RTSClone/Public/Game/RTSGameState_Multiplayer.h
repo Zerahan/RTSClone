@@ -7,6 +7,9 @@
 #include "Game/TeamTypes.h"
 #include "RTSGameState_Multiplayer.generated.h"
 
+class UUnitData_Static;
+class UDataTable;
+
 /**
  * 
  */
@@ -20,7 +23,16 @@ class RTSCLONE_API ARTSGameState_Multiplayer : public AGameState
 
 	UPROPERTY(Replicated, SaveGame)//, ReplicatedUsing = OnRep_SetTeamColors)
 	TArray<FTeamAttitude> Attitudes;
+
+	UPROPERTY(Replicated, SaveGame)
+	TArray<UUnitData_Static*> UnitDataList;
+
+	UPROPERTY(Replicated, SaveGame, meta=(AllowPrivateAccess = "true"))
+	UDataTable* UnitDataTable;
 	
+protected:
+	virtual void HandleMatchIsWaitingToStart() override;
+
 public:
 	ARTSGameState_Multiplayer();
 	//UFUNCTION()

@@ -39,15 +39,15 @@ APlayerController* UInputContext::GetPlayerController() const { return Controlle
 UInputManagerComponent* UInputContext::GetInputManager() const { return InputManagerRef; }
 
 bool UInputContext::IsPrimaryActionDown() const { return PrimaryStartHold > 0; }
-bool UInputContext::IsPrimaryActionHeld() const { return PrimaryStartHold + 0.25 < UGameplayStatics::GetRealTimeSeconds(GetWorld()); }
+bool UInputContext::IsPrimaryActionHeld() const { return PrimaryStartHold + 0.25 < UGameplayStatics::GetRealTimeSeconds(this); }
 bool UInputContext::IsSecondaryActionDown() const { return SecondaryStartHold > 0; }
-bool UInputContext::IsSecondaryActionHeld() const { return SecondaryStartHold + 0.25 < UGameplayStatics::GetRealTimeSeconds(GetWorld()); }
+bool UInputContext::IsSecondaryActionHeld() const { return SecondaryStartHold + 0.25 < UGameplayStatics::GetRealTimeSeconds(this); }
 bool UInputContext::IsTertiaryActionDown() const { return TertiaryStartHold > 0; }
-bool UInputContext::IsTertiaryActionHeld() const { return TertiaryStartHold + 0.25 < UGameplayStatics::GetRealTimeSeconds(GetWorld()); }
+bool UInputContext::IsTertiaryActionHeld() const { return TertiaryStartHold + 0.25 < UGameplayStatics::GetRealTimeSeconds(this); }
 
 bool UInputContext::PrimaryAction_Pressed_Implementation(bool IsShiftDown, bool IsCtrlDown, bool IsAltDown)
 {
-	PrimaryStartHold = UGameplayStatics::GetRealTimeSeconds();
+	PrimaryStartHold = UGameplayStatics::GetRealTimeSeconds(this);
 #if WITH_EDITORONLY_DATA
 	PrintInput("Primary Pressed", IsShiftDown, IsCtrlDown, IsAltDown);
 #endif
@@ -65,7 +65,7 @@ bool UInputContext::PrimaryAction_Released_Implementation(bool IsShiftDown, bool
 
 bool UInputContext::SecondaryAction_Pressed_Implementation(bool IsShiftDown, bool IsCtrlDown, bool IsAltDown)
 {
-	SecondaryStartHold = UGameplayStatics::GetRealTimeSeconds();
+	SecondaryStartHold = UGameplayStatics::GetRealTimeSeconds(this);
 #if WITH_EDITORONLY_DATA
 	PrintInput("Secondary Pressed", IsShiftDown, IsCtrlDown, IsAltDown);
 #endif
@@ -83,7 +83,7 @@ bool UInputContext::SecondaryAction_Released_Implementation(bool IsShiftDown, bo
 
 bool UInputContext::TertiaryAction_Pressed_Implementation(bool IsShiftDown, bool IsCtrlDown, bool IsAltDown)
 {
-	TertiaryStartHold = UGameplayStatics::GetRealTimeSeconds();
+	TertiaryStartHold = UGameplayStatics::GetRealTimeSeconds(this);
 #if WITH_EDITORONLY_DATA
 	PrintInput("Tertiary Pressed", IsShiftDown, IsCtrlDown, IsAltDown);
 #endif

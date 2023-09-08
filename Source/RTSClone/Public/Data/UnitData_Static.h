@@ -188,4 +188,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool IsValid() const;
 	
+	UFUNCTION(BlueprintCallable)
+	static UUnitData_Static* BuildDataFromTable(UObject* OwnerRef, UDataTable* Table, FName Row);
 };

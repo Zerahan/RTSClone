@@ -26,13 +26,6 @@ void AUnitPawn_Basic::Tick(float DeltaTime)
 
 }
 
-// Called to bind functionality to input
-void AUnitPawn_Basic::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-}
-
 bool AUnitPawn_Basic::SetupUnitFromDataObject_Implementation(UUnitData_Static* StaticData) {
 	StaticDataRef = StaticData;
 	return true;

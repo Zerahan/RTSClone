@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
+#include "Data/UnitData_Static.h"
 #include "UnitInterface.generated.h"
 
 class UUnitData_Static;
